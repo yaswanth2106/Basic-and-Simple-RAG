@@ -1,0 +1,24 @@
+# Virtual environment
+.venv/
+env/
+rag_env/
+
+# Cache & build
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Environment & secrets
+.env
+
+# Temporary or weird files
+*.log
+*.tmp
+*.bak
+0.3.0

@@ -1,0 +1,7 @@
+streamlit
+cohere
+pinecone
+pandas
+PyPDF2
+openpyxl
+python-dotenv
