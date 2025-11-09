@@ -9,7 +9,6 @@ from PyPDF2 import PdfReader
 import io
 import uuid
 
-# ──────────────── SETUP ────────────────
 load_dotenv()
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
@@ -37,7 +36,7 @@ CHAT_MODEL = "command-r-plus-08-2024"
 SIM_THRESHOLD = 0.00000125
 
 
-# ──────────────── HELPERS ────────────────
+
 def embed_and_store(texts, metadata_tag="general"):
     """Embed and store texts into Pinecone."""
     embeds = co.embed(texts=texts, model=EMBED_MODEL, input_type="search_document").embeddings
@@ -111,7 +110,8 @@ Answer:"""
     return resp.text, matches
 
 
-# ──────────────── STREAMLIT UI ────────────────
+
+
 st.title("🧠 Multi-Modal RAG — Upload Text / PDF / Table & Query")
 
 uploaded_file = st.file_uploader("Upload a text (.txt), PDF, or table (.csv/.xlsx/.tsv) file", type=["txt", "pdf", "csv", "tsv", "xlsx"])
@@ -119,7 +119,9 @@ text_input = st.text_area("Or paste raw text manually here:")
 
 mode = st.radio("Choose mode:", ["Ingest File/Text", "Ask a Question"])
 
-# ──────────────── INGESTION ────────────────
+
+
+
 if mode == "Ingest File/Text":
     if uploaded_file is not None:
         filename = uploaded_file.name
@@ -154,7 +156,8 @@ if mode == "Ingest File/Text":
     else:
         st.info("Upload a file or paste text to start ingestion.")
 
-# ──────────────── QUERY ────────────────
+
+
 elif mode == "Ask a Question":
     query = st.text_input("Ask a question about your uploaded data:")
     tag_filter = st.text_input("(Optional) Filter by filename/tag:")
